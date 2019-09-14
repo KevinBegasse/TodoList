@@ -7,6 +7,7 @@ import { connect } from 'react-redux';
 /**
  * Local import
  */
+
 // Composants enfants éventuels
 import Input from 'src/components/Input';
 import TaskCounter from 'src/components/TaskCounter';
@@ -18,13 +19,14 @@ import './app.sass';
 /**
  * Code
  */
-const App = ({ title, greeting, handleChange }) => (
+const App = ({ title, greeting, handleChange, tasks }) => (
   <div id="app">
     <h1 id="app-title">{title}</h1>
+    {console.log('tasks:', tasks)}
     
     <Input />
     <TaskCounter />
-    <Tasks />
+    <Tasks taskList={tasks}/>
 
   </div>
 );
@@ -39,7 +41,8 @@ const connectionStrategies = connect(
   (state, ownProps) => {
     return {
       title: ownProps.title,
-      greeting: state.greetingMessage
+      greeting: state.greetingMessage,
+      tasks: state.tasks
     };
   },
 

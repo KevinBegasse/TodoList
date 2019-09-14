@@ -1,8 +1,10 @@
 import React from 'react';
 
-const Task = () => {
-    return <div className="task">
-        <p>Tache en cours</p>
+const Task = ({ title, id, done }) => {
+    
+    const className = done ? "task done" : "task";
+    return <div className={className}>
+        <p>{title}</p>
     </div>
        
 };

@@ -1,5 +1,8 @@
+import tasks from 'src/components/datas/tasks'
+
 const initialState = {
-  greetingMessage: 'Bonjour depuis le store !'
+  greetingMessage: 'Bonjour depuis le store !',
+  tasks: tasks
 };
 
 const defaultAction = {};
