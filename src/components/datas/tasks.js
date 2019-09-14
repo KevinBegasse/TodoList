@@ -12,7 +12,7 @@ export default [
     {
         title: 'Ajouter une tâche',
         id: 3,
-        done: false,
+        done: true,
     },
     {
         title: 'Ajout de boutons "fait"',

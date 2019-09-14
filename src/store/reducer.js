@@ -1,18 +1,28 @@
 import tasks from 'src/components/datas/tasks'
 
+
 const initialState = {
   greetingMessage: 'Bonjour depuis le store !',
-  tasks: tasks
+  tasks: tasks,
+  
 };
 
 const defaultAction = {};
 
 const reducer = (state = initialState, action = defaultAction) => {
   switch (action.type) {
-    case 'UPDATE_INPUT_VALUE': {
+    case 'ADD_TASK': {
+      console.log('ajout tache');
+      const tasksIds = state.tasks.map(task => task.id);
+      const newTask= {
+        title: action.value,
+        id: Math.max(...tasksIds) + 1,
+        done: false
+      }
+      console.log(newTask)
       return {
-        ...state,
-        greetingMessage: action.value
+      ...state,
+      tasks: [...state.tasks, newTask]
       }
     }
     default: {

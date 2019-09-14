@@ -26,7 +26,7 @@ const App = ({ title, greeting, handleChange, tasks }) => (
     
     <Input />
     <TaskCounter />
-    <Tasks taskList={tasks}/>
+    <Tasks tasksList={tasks}/>
 
   </div>
 );
