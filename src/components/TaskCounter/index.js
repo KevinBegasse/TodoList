@@ -1,7 +1,7 @@
 import React from 'react';
 
 const TaskCounter = () => {
-    return <div>
+    return <div className="taskCounter">
         <h1> X tâches restantes </h1>
     </div>
        

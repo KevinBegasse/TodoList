@@ -1,7 +1,7 @@
 import React from 'react';
 
 const Task = () => {
-    return <div>
+    return <div className="task">
         <p>Tache en cours</p>
     </div>
        

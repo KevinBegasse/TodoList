@@ -2,7 +2,7 @@ import React from 'react';
 
 const Input = () => {
     return <div>
-        <input placeholder="Entrez une tâche"/>
+        <input className="input" placeholder="Entrez une tâche"/>
     </div>
        
 };
