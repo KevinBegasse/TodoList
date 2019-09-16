@@ -20,7 +20,7 @@ export default [
         done: false,
     },
     {
-        title: 'Dynamiser compteur de tache',
+        title: 'Dynamiser compteur de tâches',
         id: 5,
         done: false,
     },

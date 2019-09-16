@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 // Local imports
 import Task from 'src/components/Task';
 
-const Tasks = ({ tasksList }) => {
+const Tasks = ({ tasksList, deleteTask, taskDone }) => {
     console.log( "taskList:",tasksList);
     
     return <div>
@@ -14,6 +14,8 @@ const Tasks = ({ tasksList }) => {
                 return <Task 
                 key = {task.id}
                 {...task}
+                deleteTask={ deleteTask }
+                taskDone= {taskDone}
                 />
             })
         }
@@ -38,6 +40,14 @@ const TasksContainer = connect(
             const action = { type: 'ADD_TASK', value: event.target.value };
             console.log(action);
             dispatch(action);
+          },
+          deleteTask: () => {
+            const action = {type: 'DELETE_TASK'};
+            dispatch(action);
+          },
+          taskDone: (id) => {
+            const action = {type: 'TASK_DONE', value: id}
+            dispatch(action)
           }
         };
       },

@@ -25,6 +25,20 @@ const reducer = (state = initialState, action = defaultAction) => {
       tasks: [...state.tasks, newTask]
       }
     }
+    case 'DELETE_TASK': {
+      console.log('suppression tâche id:', action.value);
+      return {
+        ...state
+      }
+    }
+    case 'TASK_DONE': {
+      console.log('tâche faite');
+      console.log(action.value)
+      
+      return {
+        ...state
+      }
+    }
     default: {
       // return state;
       // Dans le cas où on ne comprend pas quelle est l'action à

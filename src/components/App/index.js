@@ -22,7 +22,7 @@ import './app.sass';
 const App = ({ title, greeting, handleChange, tasks }) => (
   <div id="app">
     <h1 id="app-title">{title}</h1>
-    {console.log('tasks:', tasks)}
+
     
     <Input />
     <TaskCounter />
