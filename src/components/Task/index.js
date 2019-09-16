@@ -7,7 +7,7 @@ const Task = ({ title, id, done, deleteTask, taskDone }) => {
 
     return <div className={className}>
         <p>{title}</p>
-        <i className="trash alternate icon" onClick={deleteTask} value="test"></i>
+        <i className="trash alternate icon" onClick={() => deleteTask(id)} value="test"></i>
         <i className={IconClassName} onClick={() => taskDone(id)}></i>
         
   

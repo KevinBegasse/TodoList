@@ -27,16 +27,35 @@ const reducer = (state = initialState, action = defaultAction) => {
     }
     case 'DELETE_TASK': {
       console.log('suppression tâche id:', action.value);
+      console.log(tasks);
+      let updatedTasks = state.tasks;
+      for(let i= 0; i <= updatedTasks.length - 1; i ++){
+        if(updatedTasks[i].id === action.value) {
+          updatedTasks.splice(i, 1);
+        }
+      }
+      console.log('tableau après suppression :',updatedTasks);
       return {
-        ...state
+        ...state,
+        tasks: [...updatedTasks]
+        
       }
     }
     case 'TASK_DONE': {
-      console.log('tâche faite');
-      console.log(action.value)
-      
+      console.log('tâche faite', action.value);
+      const taskDone = state.tasks.map(task => {
+        if (task.id === action.value){
+          task.done = !task.done;
+          return task;
+        } else {
+          return task;
+        }
+      });
+            
       return {
-        ...state
+        ...state,
+        tasks: taskDone
+        
       }
     }
     default: {

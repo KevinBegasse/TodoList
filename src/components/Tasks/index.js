@@ -10,7 +10,7 @@ const Tasks = ({ tasksList, deleteTask, taskDone }) => {
     return <div>
         {
             tasksList.map(task => {
-                console.log(task);
+                console.log('retour du map :', task);
                 return <Task 
                 key = {task.id}
                 {...task}
@@ -41,8 +41,8 @@ const TasksContainer = connect(
             console.log(action);
             dispatch(action);
           },
-          deleteTask: () => {
-            const action = {type: 'DELETE_TASK'};
+          deleteTask: (id) => {
+            const action = {type: 'DELETE_TASK', value: id};
             dispatch(action);
           },
           taskDone: (id) => {
