@@ -4,6 +4,12 @@ import { connect } from 'react-redux';
 // Local imports
 import Task from 'src/components/Task';
 
+/**
+ *  Composant de présentation des tâches, il reçoit les props de la methode connect ci dessous et réalise un map de la liste des tâches.
+ * Ce map fait ensuite appel au composant Task autant de fois qu'il y a de tâches.
+*/
+
+
 const Tasks = ({ tasksList, deleteTask, taskDone }) => {
     console.log( "taskList:",tasksList);
     
@@ -27,6 +33,7 @@ const Tasks = ({ tasksList, deleteTask, taskDone }) => {
 
 
 const TasksContainer = connect(
+  // 1er argument : sratégie de lecture du state
     (state, ownProps) => {
         return {
           tasksList: state.tasks
