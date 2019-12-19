@@ -49,10 +49,10 @@ const connectionStrategies = connect(
   // 2d argument : stratégie d'écriture (dans le state privé global)
   (dispatch, ownProps) => {
     return {
-      handleChange: (event) => {
-        const action = { type: 'UPDATE_INPUT_VALUE', value: event.target.value };
-        dispatch(action);
-      }
+      // handleChange: (event) => {
+      //   const action = { type: 'UPDATE_INPUT_VALUE', value: event.target.value };
+      //   dispatch(action);
+      // }
     };
   },
 );

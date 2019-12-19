@@ -17,7 +17,7 @@ import kastore from 'src/store';
  */
 
 const reactRootElement = <Provider store={kastore}>
-  <AppContainer title="Modèle React" />
+  <AppContainer title="ToDo List" />
 </Provider>;
 
 const renderingArea = document.querySelector('#root');

@@ -2,7 +2,7 @@ import React from 'react';
 
 const TaskCounter = ({ tasksList })  => {
     // Ajout du conteur de tâches qui se base sur le nombre de tâches dont la propriété done indique false via un filter du tableau des tâches
-    console.log("compteur", tasksList);
+    // console.log("compteur", tasksList);
     const counter = tasksList.filter(task => task.done === false).length;
     let message = "";
 

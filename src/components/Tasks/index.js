@@ -12,12 +12,12 @@ import { deletedTask, taskDone } from 'src/store/actions';
 
 
 const Tasks = ({ tasksList, deleteTask, handleDone }) => {
-    console.log( "taskList:",tasksList);
+    // console.log( "taskList:",tasksList);
     
     return <div>
         {
             tasksList.map(task => {
-                console.log('retour du map :', task);
+                // console.log('retour du map :', task);
                 return <Task 
                 key = {task.id}
                 {...task}
