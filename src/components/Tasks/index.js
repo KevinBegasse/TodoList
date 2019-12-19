@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 
 // Local imports
 import Task from 'src/components/Task';
+import { deletedTask, taskDone } from 'src/store/actions';
 
 /**
  *  Composant de présentation des tâches, il reçoit les props de la methode connect ci dessous et réalise un map de la liste des tâches.
@@ -10,7 +11,7 @@ import Task from 'src/components/Task';
 */
 
 
-const Tasks = ({ tasksList, deleteTask, taskDone }) => {
+const Tasks = ({ tasksList, deleteTask, handleDone }) => {
     console.log( "taskList:",tasksList);
     
     return <div>
@@ -21,7 +22,7 @@ const Tasks = ({ tasksList, deleteTask, taskDone }) => {
                 key = {task.id}
                 {...task}
                 deleteTask={ deleteTask }
-                taskDone= {taskDone}
+                handleDone= {handleDone}
                 />
             })
         }
@@ -43,18 +44,20 @@ const TasksContainer = connect(
       // 2d argument : stratégie d'écriture (dans le state privé global)
       (dispatch, ownProps) => {
         return {
-          handleSubmit: () => {
-            const action = { type: 'ADD_TASK', value: event.target.value };
-            console.log(action);
-            dispatch(action);
-          },
+          // handleSubmit: () => {
+          //   // const action = { type: 'ADD_TASK', value: event.target.value };
+          //   // console.log(action);
+          //   dispatch(addTask(event.target.value));
+          // },
           deleteTask: (id) => {
-            const action = {type: 'DELETE_TASK', value: id};
-            dispatch(action);
+            
+            // const action = {type: 'DELETE_TASK', value: id};  
+            dispatch(deletedTask(id));
+
           },
-          taskDone: (id) => {
-            const action = {type: 'TASK_DONE', value: id}
-            dispatch(action)
+          handleDone: (id) => {
+            // const action = {type: 'TASK_DONE', value: id}
+            dispatch(taskDone(id));
           }
         };
       },

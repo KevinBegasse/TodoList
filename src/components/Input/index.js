@@ -1,6 +1,9 @@
 import React from 'react';
 import { connect } from 'react-redux';
 
+//local import
+import { addTask, inputChange } from 'src/store/actions';
+
 /**
  * 
  * Composant de présentation des tâches unitaires qui reçoit en props le tableau des tâches destructuré via le spread opérateur {...tasks}
@@ -10,7 +13,7 @@ const Input = ({ handleSubmit, inputValue, handleChange }) => {
   // Le form inclu directement le prevent default, par soucis de clareté il serait bon de l'inclure dans la déclaration de la méthode plus bas.
     return <form onSubmit={(event) => {
         event.preventDefault()
-        handleSubmit();
+        handleSubmit(inputValue);
     }}
         >
        
@@ -31,14 +34,14 @@ const InputContainer = connect(
       // 2d argument : stratégie d'écriture (dans le state privé global)
       (dispatch, ownProps) => {
         return {
-          handleSubmit: () => {
-            const action = { type: 'ADD_TASK', value: document.querySelector('#input-value').value };
-            console.log(action);
-            dispatch(action);
+          handleSubmit: (input) => {
+            // const action = { type: 'ADD_TASK', value: input};
+            // console.log(action);
+            dispatch(addTask(input));
           },
           handleChange: () => {
-            const action = {type: 'INPUT_CHANGE', value: event.target.value};
-            dispatch(action);
+            // const action = {type: 'INPUT_CHANGE', value: event.target.value};
+            dispatch(inputChange(event.target.value));
           }
         };
       },

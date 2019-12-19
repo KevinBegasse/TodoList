@@ -1,5 +1,7 @@
 import tasks from 'src/components/datas/tasks'
 
+import { INPUT_CHANGE, ADD_TASK, DELETE_TASK, TASK_DONE  } from 'src/store/actions';
+
 // On instancie le state par défaut
 const initialState = {
   greetingMessage: 'Bonjour depuis le store !',
@@ -15,14 +17,14 @@ const defaultAction = {};
 const reducer = (state = initialState, action = defaultAction) => {
   switch (action.type) {
     // Gestion du refresh de l'input après soumission, l'input prend la valeur de l'action transmise par la methode onChange
-    case 'INPUT_CHANGE': {
+    case INPUT_CHANGE: {
       return {
         ...state,
         inputValue: action.value
       }
     }
     // Gestion de l'ajout d'une tâche
-    case 'ADD_TASK': {
+    case ADD_TASK: {
       console.log('ajout tache');
       const tasksIds = state.tasks.map(task => task.id);
       const newTask= {
@@ -39,7 +41,7 @@ const reducer = (state = initialState, action = defaultAction) => {
       }
     }
     //Gestion de la suppresion d'une tâche
-    case 'DELETE_TASK': {
+    case DELETE_TASK: {
       console.log('suppression tâche id:', action.value);
       console.log(tasks);
       let updatedTasks = state.tasks;
@@ -57,7 +59,7 @@ const reducer = (state = initialState, action = defaultAction) => {
       }
     }
     // Gestion de la validation d'une tâche
-    case 'TASK_DONE': {
+    case TASK_DONE: {
       console.log('tâche faite', action.value);
       const taskDone = state.tasks.map(task => {
         if (task.id === action.value){
