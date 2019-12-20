@@ -34,9 +34,16 @@ const reducer = (state = initialState, action = defaultAction) => {
         done: false
       }
       console.log(newTask)
+      //Tentative de tri des tâches en fonctions de la propriétés done
+      const newTaskList = state.tasks;
+      newTaskList.push(newTask);
+      //Fonctionne mais revoir la compréhension de la synthaxe de cette ternaire.
+      newTaskList.sort(function(a, b){
+        return(a.done === false)? 0: a? 1 : -1;
+      })
       return {
       ...state,
-      tasks: [...state.tasks, newTask],
+      tasks: [...newTaskList],
       inputValue: "",
       }
     }
@@ -52,6 +59,7 @@ const reducer = (state = initialState, action = defaultAction) => {
         }
       }
       console.log('tableau après suppression :',updatedTasks);
+      
       return {
         ...state,
         tasks: [...updatedTasks]
@@ -69,6 +77,12 @@ const reducer = (state = initialState, action = defaultAction) => {
           return task;
         }
       });
+
+      //Tentative de tri des tâches en fonctions de la propriétés done
+      //Fonctionne mais revoir la compréhension de la synthaxe de cette ternaire.
+      taskDone.sort(function(a, b){
+        return(a.done === false)? 0: a? 1 : -1;
+      })
             
       return {
         ...state,
