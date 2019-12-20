@@ -4,6 +4,7 @@ import { Icon } from 'semantic-ui-react'
 const Task = ({ title, id, done, deleteTask, handleDone }) => {
     const IconClassName = done ? "check circle icon" : "check circle outline icon" ;
     const className = done ? "task done" : "task";
+    console.log('recu par task', title, id, done);
 
     return <div className={className}>
         <p>{title}</p>

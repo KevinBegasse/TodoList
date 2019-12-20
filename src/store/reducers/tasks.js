@@ -1,27 +1,12 @@
-// import { combineReducers } from 'redux';
-
-// import inputReducer from 'src/store/reducers/input';
-// import tasksReducer from 'src/store/reducers/tasks';
-// import userReducer from 'src/store/reducers/user';
-
-// const reducer = combineReducers({
-//   inputReducer,
-//   tasksReducer,
-//   userReducer,
-// });
-
-// export default reducer;
-
 import tasks from 'src/components/datas/tasks'
 
-import { INPUT_CHANGE, ADD_TASK, DELETE_TASK, TASK_DONE  } from 'src/store/actions';
+import { ADD_TASK, 
+         DELETE_TASK, 
+         TASK_DONE  
+    } from 'src/store/actions';
 
-// On instancie le state par défaut
-const initialState = {
-  greetingMessage: 'Bonjour depuis le store !',
-  tasks: tasks,
-  inputValue: ""
-};
+// On instancie le state par défaut du sous réducer consacré aux tâches
+const initialState = [];
 
 // On instancie l'action par défaut
 const defaultAction = {};
@@ -30,36 +15,32 @@ const defaultAction = {};
 //Gestion des traitements des différentes action 
 const reducer = (state = initialState, action = defaultAction) => {
   switch (action.type) {
-    // Gestion du refresh de l'input après soumission, l'input prend la valeur de l'action transmise par la methode onChange
-    case INPUT_CHANGE: {
-      return {
-        ...state,
-        inputValue: action.value
-      }
-    }
     // Gestion de l'ajout d'une tâche
     case ADD_TASK: {
       console.log('ajout tache');
-      const tasksIds = state.tasks.map(task => task.id);
-      const newTask= {
-        title: action.value,
+      const newTask = {}
+      if (state.length > 0) {
+      const tasksIds = state.map(task => task.id);
+      console.log('taskIds', tasksIds);
+        newTask.title = action.value,
         // TODO : optimiser l'attribution de l'id, risque que des tâches aient le même id en cas de suppression puis d'ajout
-        id: Math.max(...tasksIds) + 1,
-        done: false
-      }
-      console.log(newTask)
+        newTask.id = Math.max(tasksIds) + 1,
+        newTask.done = false
+    } else {
+        newTask.title = action.value,
+        // TODO : optimiser l'attribution de l'id, risque que des tâches aient le même id en cas de suppression puis d'ajout
+        newTask.id = 0,
+        newTask.done = false
+    }
+      console.log('newTask', newTask)
       //Tentative de tri des tâches en fonctions de la propriétés done
-      const newTaskList = state.tasks;
+      const newTaskList = [...state];
       newTaskList.push(newTask);
       //Fonctionne mais revoir la compréhension de la synthaxe de cette ternaire.
       newTaskList.sort(function(a, b){
         return(a.done === false)? 0: a? 1 : -1;
       })
-      return {
-      ...state,
-      tasks: [...newTaskList],
-      inputValue: "",
-      }
+      return [newTaskList]
     }
     //Gestion de la suppresion d'une tâche
     case DELETE_TASK: {
@@ -74,11 +55,7 @@ const reducer = (state = initialState, action = defaultAction) => {
       }
       console.log('tableau après suppression :',updatedTasks);
       
-      return {
-        ...state,
-        tasks: [...updatedTasks]
-        
-      }
+      return [updatedTasks]
     }
     // Gestion de la validation d'une tâche
     case TASK_DONE: {
@@ -98,24 +75,21 @@ const reducer = (state = initialState, action = defaultAction) => {
         return(a.done === false)? 0: a? 1 : -1;
       })
             
-      return {
-        ...state,
-        tasks: taskDone
-        
-      }
+      return [taskDone]
       /**
        *  TODO : 
-       * => trier les tâches en indiquant en premier les tâches restant à effecuter
+       * => trier les tâches en indiquant en premier les tâches restant à effecuter => CHECK
        * => Donner la possibilité de prioriser des tâches
       */
 
     }
     default: {
+        console.log('reducer/tasks/default');
       // return state;
       // Dans le cas où on ne comprend pas quelle est l'action à
       // effecture (action.type n'est pas reconnu), on retourne
       // une copie non-altérée du state courant, reçu en paramètre.
-      return { ...state };
+      return [ ...state ];
     }
   }
 };

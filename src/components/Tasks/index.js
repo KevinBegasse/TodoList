@@ -18,7 +18,8 @@ const Tasks = ({ tasksList, deleteTask, handleDone }) => {
     return <div>
         {
             tasksList.map(task => {
-                // console.log('retour du map :', task);
+              //erreur en testant un console log de ...task
+                console.log('retour du map :', task, "spread", {...task});
                 return <Task 
                 key = {task.id}
                 {...task}
@@ -37,8 +38,9 @@ const Tasks = ({ tasksList, deleteTask, handleDone }) => {
 const TasksContainer = connect(
   // 1er argument : sratégie de lecture du state
     (state, ownProps) => {
+      console.log('comp tasks : state', state);
         return {
-          tasksList: state.tasks
+          tasksList: state.tasks,
         };
       },
     

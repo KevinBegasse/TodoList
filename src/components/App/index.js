@@ -42,7 +42,7 @@ const connectionStrategies = connect(
     return {
       title: ownProps.title,
       greeting: state.greetingMessage,
-      tasks: state.tasks
+      tasks: state.tasks,
     };
   },
 

@@ -18,6 +18,7 @@ const Input = ({ handleSubmit, inputValue, handleChange }) => {
         >
        
         <input className="input" id="input-value" placeholder="Entrez une tâche" value={inputValue} onChange={handleChange} />
+        <button className="saveList" >Sauvegarder la liste</button>
     </form>
        
 };
