@@ -2,18 +2,20 @@ import React from 'react';
 import { connect } from 'react-redux';
 
 //local import
-import { addTask, inputChange } from 'src/store/actions';
+import { addTask, inputChange, inputReset } from 'src/store/actions';
 
 /**
  * 
  * Composant de présentation des tâches unitaires qui reçoit en props le tableau des tâches destructuré via le spread opérateur {...tasks}
  */
 
-const Input = ({ handleSubmit, inputValue, handleChange }) => {
+const Input = ({ handleSubmit, inputValue, handleChange, handleReset }) => {
   // Le form inclu directement le prevent default, par soucis de clareté il serait bon de l'inclure dans la déclaration de la méthode plus bas.
     return <form onSubmit={(event) => {
         event.preventDefault()
+        console.log('valeur input: ', inputValue);
         handleSubmit(inputValue);
+        handleReset();
     }}
         >
        
@@ -28,7 +30,7 @@ const InputContainer = connect(
     (state, ownProps) => {
         return {
           tasksList: state.tasks,
-          inputValue: state.inputValue
+          inputValue: state.input
         };
       },
     
@@ -43,7 +45,11 @@ const InputContainer = connect(
           handleChange: () => {
             // const action = {type: 'INPUT_CHANGE', value: event.target.value};
             dispatch(inputChange(event.target.value));
+          },
+          handleReset: () => {
+            dispatch(inputReset());
           }
+          
         };
       },
 )

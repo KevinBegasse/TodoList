@@ -1,5 +1,3 @@
-import tasks from 'src/components/datas/tasks'
-
 import { ADD_TASK, 
          DELETE_TASK, 
          TASK_DONE  
@@ -17,7 +15,7 @@ const reducer = (state = initialState, action = defaultAction) => {
   switch (action.type) {
     // Gestion de l'ajout d'une tâche
     case ADD_TASK: {
-      console.log('ajout tache');
+      console.log('ajout tache', action);
       const newTask = {}
       if (state.length > 0) {
       const tasksIds = state.map(task => task.id);
@@ -40,7 +38,7 @@ const reducer = (state = initialState, action = defaultAction) => {
       newTaskList.sort(function(a, b){
         return(a.done === false)? 0: a? 1 : -1;
       })
-      return [newTaskList]
+      return [...newTaskList]
     }
     //Gestion de la suppresion d'une tâche
     case DELETE_TASK: {
