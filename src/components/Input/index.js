@@ -11,17 +11,18 @@ import { addTask, inputChange, inputReset } from 'src/store/actions';
 
 const Input = ({ handleSubmit, inputValue, handleChange, handleReset }) => {
   // Le form inclu directement le prevent default, par soucis de clareté il serait bon de l'inclure dans la déclaration de la méthode plus bas.
-    return <form onSubmit={(event) => {
-        event.preventDefault()
-        console.log('valeur input: ', inputValue);
-        handleSubmit(inputValue);
-        handleReset();
-    }}
-        >
-       
-        <input className="input" id="input-value" placeholder="Entrez une tâche" value={inputValue} onChange={handleChange} />
-        <button className="saveList" >Sauvegarder la liste</button>
-    </form>
+    return <div>
+      <form onSubmit={(event) => {
+          event.preventDefault()
+          console.log('valeur input: ', inputValue);
+          handleSubmit(inputValue);
+          handleReset();
+      }}
+          >
+        
+          <input className="input" id="input-value" placeholder="Entrez une tâche" value={inputValue} onChange={handleChange} />
+      </form>
+    </div>
        
 };
 

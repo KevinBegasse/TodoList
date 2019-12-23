@@ -10,6 +10,7 @@ import { connect } from 'react-redux';
 
 // Composants enfants éventuels
 import Input from 'src/components/Input';
+import SaveList from 'src/components/SaveList';
 import TaskCounter from 'src/components/TaskCounter';
 import Tasks from 'src/components/Tasks';
 
@@ -25,6 +26,7 @@ const App = ({ title, greeting, handleChange, tasks }) => (
 
     
     <Input />
+    <SaveList />
     <TaskCounter tasksList = {tasks}/>
     <Tasks tasksList={tasks}/>
 
