@@ -19,10 +19,10 @@ const reducer = (state = initialState, action = defaultAction) => {
       const newTask = {}
       if (state.length > 0) {
       const tasksIds = state.map(task => task.id);
-      console.log('taskIds', tasksIds);
+      console.log('taskIds', tasksIds, 'math max', Math.max(...tasksIds));
         newTask.title = action.value,
         // TODO : optimiser l'attribution de l'id, risque que des tâches aient le même id en cas de suppression puis d'ajout
-        newTask.id = Math.max(tasksIds) + 1,
+        newTask.id = Math.max(...tasksIds) + 1,
         newTask.done = false
     } else {
         newTask.title = action.value,
@@ -38,7 +38,7 @@ const reducer = (state = initialState, action = defaultAction) => {
       newTaskList.sort(function(a, b){
         return(a.done === false)? 0: a? 1 : -1;
       })
-      return [...newTaskList]
+      return newTaskList
     }
     //Gestion de la suppresion d'une tâche
     case DELETE_TASK: {
@@ -58,22 +58,26 @@ const reducer = (state = initialState, action = defaultAction) => {
     // Gestion de la validation d'une tâche
     case TASK_DONE: {
       console.log('tâche faite', action.value);
-      const taskDone = state.tasks.map(task => {
+      console.log('state = ', state)
+      const newTaskList=[...state];
+      newTaskList.map(task => {
+       
         if (task.id === action.value){
+          console.log('identique', newTaskList, 'spread:', ...newTaskList);
           task.done = !task.done;
-          return task;
+          return newTaskList;
         } else {
-          return task;
+          return newTaskList;
         }
       });
 
       //Tentative de tri des tâches en fonctions de la propriétés done
       //Fonctionne mais revoir la compréhension de la synthaxe de cette ternaire.
-      taskDone.sort(function(a, b){
+      newTaskList.sort(function(a, b){
         return(a.done === false)? 0: a? 1 : -1;
       })
             
-      return [taskDone]
+      return newTaskList;
       /**
        *  TODO : 
        * => trier les tâches en indiquant en premier les tâches restant à effecuter => CHECK

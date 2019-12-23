@@ -12,7 +12,7 @@ import { deletedTask, taskDone } from 'src/store/actions';
 
 
 const Tasks = ({ tasksList, deleteTask, handleDone }) => {
-    console.log( "taskList:",tasksList);
+    console.log( "avant le map taskList:",tasksList);
     
     
     return <div>
