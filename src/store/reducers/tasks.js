@@ -43,8 +43,8 @@ const reducer = (state = initialState, action = defaultAction) => {
     //Gestion de la suppresion d'une tâche
     case DELETE_TASK: {
       console.log('suppression tâche id:', action.value);
-      console.log(tasks);
-      let updatedTasks = state.tasks;
+      console.log(state);
+      let updatedTasks = state;
       // TODO optimiser la méthode de suppresion, splice doit pouvoir s'utiliser de manière plus simple
       for(let i= 0; i <= updatedTasks.length - 1; i ++){
         if(updatedTasks[i].id === action.value) {
@@ -53,7 +53,7 @@ const reducer = (state = initialState, action = defaultAction) => {
       }
       console.log('tableau après suppression :',updatedTasks);
       
-      return [updatedTasks]
+      return [...updatedTasks];
     }
     // Gestion de la validation d'une tâche
     case TASK_DONE: {

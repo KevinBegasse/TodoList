@@ -24,7 +24,7 @@ const Tasks = ({ tasksList, deleteTask, handleDone }) => {
                 key = {task.id}
                 {...task}
                 deleteTask={ deleteTask }
-                handleDone= {handleDone}
+                handleDone= { handleDone }
                 />
             })
         }
