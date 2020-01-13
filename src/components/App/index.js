@@ -7,12 +7,14 @@ import { connect } from 'react-redux';
 /**
  * Local import
  */
+import { modalAction } from 'src/store/actions';
 
 // Composants enfants éventuels
 import Input from 'src/components/Input';
 import SaveList from 'src/components/SaveList';
 import TaskCounter from 'src/components/TaskCounter';
 import Tasks from 'src/components/Tasks';
+import Modal from 'src/components/Modal';
 
 // Styles et assets
 import './app.sass';
@@ -20,13 +22,16 @@ import './app.sass';
 /**
  * Code
  */
-const App = ({ title, greeting, handleChange, tasks }) => (
+const App = ({ title, greeting, handleChange, tasks, displayModal, handleModal }) => (
   <div id="app">
     <h1 id="app-title">{title}</h1>
 
-    
+    {
+    displayModal &&
+    <Modal modalAction={handleModal}/>
+    }
     <Input />
-    <SaveList />
+    <SaveList modalAction={handleModal}/>
     <TaskCounter tasksList = {tasks}/>
     <Tasks tasksList={tasks}/>
 
@@ -45,12 +50,17 @@ const connectionStrategies = connect(
       title: ownProps.title,
       greeting: state.greetingMessage,
       tasks: state.tasks,
+      displayModal: state.modal,
     };
   },
 
   // 2d argument : stratégie d'écriture (dans le state privé global)
   (dispatch, ownProps) => {
     return {
+      handleModal: () => {      
+        console.log('app handle modal')  
+        dispatch(modalAction());
+      }
       // handleChange: (event) => {
       //   const action = { type: 'UPDATE_INPUT_VALUE', value: event.target.value };
       //   dispatch(action);

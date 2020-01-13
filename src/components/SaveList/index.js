@@ -21,7 +21,7 @@ class SaveList extends React.Component  {
 
     render() {
         if (!this.state.showModal) {
-            return <button className="saveList" onClick={() => this.playModal()}>Sauvegarder la liste</button>
+            return <button className="saveList" onClick={() => this.props.modalAction()}>Sauvegarder la liste</button>
         } else {
             return <button className="connect" onClick={() => this.playModal()}>Test</button>
         }

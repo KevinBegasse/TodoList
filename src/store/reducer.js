@@ -3,11 +3,13 @@ import { combineReducers } from 'redux';
 import input from 'src/store/reducers/input';
 import tasks from 'src/store/reducers/tasks';
 import user from 'src/store/reducers/user';
+import modal from 'src/store/reducers/modal';
 
 const reducer = combineReducers({
   input,
   tasks,
   user,
+  modal
 });
 
 export default reducer;
